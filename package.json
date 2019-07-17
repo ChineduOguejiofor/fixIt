@@ -1,0 +1,42 @@
+{
+  "name": "maintenanceTracker",
+  "version": "1.0.0",
+  "description": "This app is used to tracker maintenance in a building or company",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "mocha *.test.js --recursive  ",
+    "coverage": "nyc --reporter=text npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChineduOguejiofor/maintenanceTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChineduOguejiofor/maintenanceTracker/issues"
+  },
+  "homepage": "https://github.com/ChineduOguejiofor/maintenanceTracker#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chai": "^4.2.0",
+    "config": "^3.2.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.1.1",
+    "gravatar": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-react": "^7.14.2",
+    "nodemon": "^1.19.1"
+  }
+}
