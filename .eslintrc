@@ -10,6 +10,8 @@
   },
   "rules": {
     "linebreak-style": ["error", "windows"],
-    "import/newline-after-import": "off"
+    "import/newline-after-import": "off",
+    "func-names": "off",
+    "space-before-function-paren": "off"
   }
 }
