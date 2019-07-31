@@ -1,3 +1,5 @@
 {
-  "jwtSecret": "MySecretisListeningClosly"
+  "jwtSecret": "MySecretisListeningClosly",
+  "myPass": "Alvaro334",
+  "userName": "postgres"
 }
