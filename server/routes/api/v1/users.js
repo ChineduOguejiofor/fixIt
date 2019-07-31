@@ -4,14 +4,13 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
+const db = require('./dbinsert');
 const { check, validationResult } = require('express-validator');
 // @route GET api/v1/users
 // @desc gets user info
 // @access Private Route
 
-let usersarr = [];
-let userObj = [];
-
+let userId = '';
 router.post(
   '/',
   [
@@ -33,10 +32,10 @@ router.post(
       // Search for user in db
       // let user =
 
-      // check if user exists
-      if (usersarr.includes(email)) {
-        return res.status(400).json({ errors: [{ msg: 'User aleady exist' }] });
-      }
+      // // check if user exists
+      // if (usersarr.includes(email)) {
+      //   return res.status(400).json({ errors: [{ msg: 'User aleady exist' }] });
+      // }
       // Get the gravatar
       const avatar = gravatar.url(email, {
         s: '200',
@@ -49,31 +48,33 @@ router.post(
 
       const passwordhash = await bcrypt.hash(password, salt);
 
-      usersarr.push(email);
-      const newUser = { name, email, avatar, passwordhash };
-      userObj.push(newUser);
+      try {
+        userId = await db.insertUser(name, email, avatar, passwordhash);
+      } catch (error) {
+        console.log('Faied on error');
+        console.log(error);
+      }
 
-      // return token
-      // res.send('User has been added to obj');
-      // console.log(userObj);
-
-      const payload = {
-        user: {
-          id: usersarr[0]
-        }
-      };
-
-      jwt.sign(
-        payload,
-        config.get('jwtSecret'),
-        { expiresIn: 36000 },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+      try {
+        const payload = {
+          user: {
+            id: userId
+          }
+        };
+        jwt.sign(
+          payload,
+          config.get('jwtSecret'),
+          { expiresIn: 36000 },
+          (err, token) => {
+            if (err) throw err;
+            res.json({ token });
+          }
+        );
+      } catch (error) {
+        console.log('error from payload' + error);
+      }
     } catch (error) {
-      res.status(500).send('Server Error');
+      res.status(500).send('Server Error from me here');
     }
   }
 );

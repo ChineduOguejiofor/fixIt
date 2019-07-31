@@ -6,8 +6,9 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const cors = require('cors');
-router.use(cors());
+const db = require('./dbinsert');
+// const cors = require('cors');
+// router.use(cors());
 
 // @route GET api/auth
 // @ desc Test route
@@ -16,7 +17,10 @@ router.use(cors());
 router.get('/', auth, (req, res) => {
   try {
     // const user = await User.findById(req.user.id).select('-password');
-    // res.json(user);
+    const user = db.querydb(req.user.id);
+    console.log(req.user.id);
+
+    res.json(user);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -41,7 +45,7 @@ router.post(
     const { email, password } = req.body;
 
     try {
-      let user = await User.findOne({ email });
+      // let user = await User.findOne({ email });
 
       if (!user) {
         return res

@@ -2,7 +2,7 @@ const { Client } = require('pg');
 const client = new Client({
   user: 'postgres',
   password: 'Alvaro334',
-  host: 'Ojumo',
+  // host: 'Ojumo',
   port: 5432,
   database: 'test'
 });
@@ -15,12 +15,14 @@ async function insertinto() {
     console.log('Connected successfully');
     await client.query('BEGIN');
     const insertHeaders = `INSERT INTO ${collection}(name,email,password) VALUES ($1, $2,$3)`;
-    const insertValues = ['chiKnight', 'chiFW@yahoo.com', 'eiowdjQQeilse'];
+    const insertValues = ['chiKnight', 'chiW@yahoo.com', 'eiowdjQQeilse'];
     client.query(insertHeaders, insertValues);
     await client.query('COMMIT');
     console.log('inserted');
   } catch (error) {
     console.log('Failed on Error');
+    console.log(error);
+
     await client.query('ROLLBACK');
   } finally {
     await client.end();

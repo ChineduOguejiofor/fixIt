@@ -2,7 +2,7 @@ const { Client } = require('pg');
 const client = new Client({
   user: 'postgres',
   password: 'Alvaro334',
-  host: 'Ojumo',
+  // host: 'Ojumo',
   port: 5432,
   database: 'test'
 });
@@ -19,6 +19,8 @@ async function execute() {
     await client.query('COMMIT');
   } catch (error) {
     console.log('Failed on Error');
+    console.log(error);
+
     await client.query('ROLLBACK');
   } finally {
     await client.end();
