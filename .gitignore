@@ -1,7 +1,8 @@
 node_modules
 .nyc_output
 package-lock.json
-/rough
+
 .env
 ideas.txt
 .env
+env
