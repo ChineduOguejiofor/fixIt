@@ -1,10 +1,11 @@
 const { Client } = require('pg');
-const config = require('config');
+require('dotenv/config');
+
 const client = new Client({
-  user: config.get('userName'),
-  password: config.get('myPass'),
+  user: process.env.dbUserName,
+  password: process.env.myPass,
   port: 5432,
-  database: 'test'
+  database: process.env.dbName
 });
 const connectDB = async () => {
   await client.connect();
@@ -28,10 +29,6 @@ const insertUser = async (name, email, avatar, password) => {
 
     await client.query('ROLLBACK');
   }
-  // finally {
-  //   await client.end();
-  //   console.log('Cleaned');
-  // }
 };
 
 const querydb = async qbody => {
@@ -53,8 +50,6 @@ const qpass = async qbody => {
     const sql = 'SELECT id, password FROM users WHERE email = $1';
     const params = [qbody];
     const result = await client.query(sql, params);
-    // console.log(result.rows);
-
     return result.rows[0];
   } catch (error) {}
 };

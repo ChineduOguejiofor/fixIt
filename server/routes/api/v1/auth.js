@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../../middleware/auth');
 const bcrypt = require('bcryptjs');
-const config = require('config');
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const db = require('./dbinsert');
 const gravatar = require('gravatar');
+require('dotenv/config');
 
 const cors = require('cors');
 router.use(cors());
@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
     res.json({ user });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).json({ msg: 'Server error' });
   }
 });
 
@@ -65,7 +65,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.jwtSecret,
         { expiresIn: 36000 },
         (err, token) => {
           if (err) throw err;
@@ -74,7 +74,7 @@ router.post(
       );
     } catch (err) {
       console.error(err);
-      res.status(500).send('Server error');
+      res.status(500).json({ msg: 'Server error' });
     }
   }
 );
@@ -119,10 +119,10 @@ router.post(
       // Encrty password
       const salt = await bcrypt.genSalt(10);
 
-      const passwordhash = await bcrypt.hash(password, salt);
+      const passwordHash = await bcrypt.hash(password, salt);
 
       try {
-        userId = await db.insertUser(name, email, avatar, passwordhash);
+        userId = await db.insertUser(name, email, avatar, passwordHash);
       } catch (error) {
         console.log('Faied on error');
         console.log(error);
@@ -136,7 +136,7 @@ router.post(
         };
         jwt.sign(
           payload,
-          config.get('jwtSecret'),
+          process.env.jwtSecret,
           { expiresIn: 36000 },
           (err, token) => {
             if (err) throw err;
@@ -147,7 +147,7 @@ router.post(
         console.log('error from payload' + error);
       }
     } catch (error) {
-      res.status(500).send('Server Error from me here');
+      res.status(500).json({ msg: 'Server Error from me here' });
     }
   }
 );
