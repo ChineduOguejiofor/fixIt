@@ -1,2 +1,3 @@
-# maintenanceTracker
-This app is used to tracker maintenance in a building or company
+# FixIt
+
+This app is used to tracker repairs in a building or company
