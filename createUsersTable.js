@@ -50,6 +50,7 @@ const createRequestTable = ` CREATE TABLE IF NOT EXISTS
         image VARCHAR(128),
         user_id BIGINT REFERENCES users(id),
         is_resolved BOOLEAN NOT NULL DEFAULT FALSE,
+        is_approved BOOLEAN NOT NULL DEFAULT FALSE,
         created_date TIMESTAMP DEFAULT NOW(),
         modified_date TIMESTAMP
       )`;
