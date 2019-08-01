@@ -54,4 +54,18 @@ const qpass = async qbody => {
     return result.rows[0];
   } catch (error) {}
 };
-module.exports = { insertUser, connectDB, querydb, qpass };
+
+const insertRequest = async (body, image, userId) => {
+  const table = 'requests';
+  try {
+    const sql = `INSERT INTO ${table}(body,image,user_id) VALUES ($1, $2,$3) RETURNING *`;
+    const params = [body, image, userId];
+    const result = await client.query(sql, params);
+    console.log(result.rows[0]);
+
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+module.exports = { insertUser, connectDB, querydb, qpass, insertRequest };
