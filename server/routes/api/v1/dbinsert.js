@@ -68,4 +68,24 @@ const insertRequest = async (body, image, userId) => {
     console.log('Failed on error ' + error);
   }
 };
-module.exports = { insertUser, connectDB, querydb, qpass, insertRequest };
+
+const getRequest = async quserId => {
+  try {
+    const sql = `SELECT * FROM requests WHERE user_id = $1`;
+    const params = [quserId];
+    const result = await client.query(sql, params);
+
+    return result.rows;
+  } catch (error) {
+    console.log('Failed on error');
+    return error;
+  }
+};
+module.exports = {
+  insertUser,
+  connectDB,
+  querydb,
+  qpass,
+  insertRequest,
+  getRequest
+};

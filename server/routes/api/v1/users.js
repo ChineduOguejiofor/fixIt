@@ -23,8 +23,6 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     try {
-      console.log(req.user.id);
-
       const result = await db.insertRequest(
         req.body.desc,
         req.body.image,
@@ -41,6 +39,13 @@ router.post(
 //@ desc Gets all the request of a logged in user
 //@ protection PRIVATE
 
-router.get('/', auth, async (req, res) => {});
+router.get('/', auth, async (req, res) => {
+  try {
+    const result = await db.getRequest(req.user.id);
+    res.json({ result });
+  } catch (error) {
+    req.status(500).json({ msg: 'Server Error' });
+  }
+});
 
 module.exports = router;
