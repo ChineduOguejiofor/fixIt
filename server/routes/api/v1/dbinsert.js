@@ -81,11 +81,38 @@ const getRequest = async quserId => {
     return error;
   }
 };
+
+const getSingleRequest = async (quserId, reqid) => {
+  try {
+    const sql = `SELECT * FROM requests WHERE user_id = $1 AND id = $2`;
+    const params = [quserId, reqid];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error');
+    return error;
+  }
+};
+
+const modifyRequest = async (body, image, reqId) => {
+  try {
+    const sql = `UPDATE requests SET body = $1 ,image = $2 ,modified_date = NOW() WHERE id = $3 RETURNING *`;
+    const params = [body, image, reqId];
+    const result = await client.query(sql, params);
+    console.log(result.rows[0]);
+
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
 module.exports = {
   insertUser,
   connectDB,
   querydb,
   qpass,
   insertRequest,
-  getRequest
+  getRequest,
+  getSingleRequest,
+  modifyRequest
 };
