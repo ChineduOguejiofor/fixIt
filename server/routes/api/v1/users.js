@@ -93,6 +93,14 @@ router.put(
       if (isNaN(requestedID)) {
         return res.status(404).json({ msg: 'Request does not exist' });
       }
+      const request = await db.getSingleRequest(req.user.id, requestedID);
+      console.log(request.is_approved);
+      if (request.is_approved) {
+        return res.status(406).json({
+          msg: 'Request has already been approved, Cannot be modified'
+        });
+      }
+
       const result = await db.modifyRequest(
         req.body.desc,
         req.body.image,
@@ -108,4 +116,5 @@ router.put(
     }
   }
 );
+
 module.exports = router;

@@ -9,7 +9,11 @@
     "test": "mocha *.test.js --recursive  ",
     "server": "nodemon ./server/server",
     "coverage": "nyc --reporter=text npm test",
-    "fulltable": "node fulltable.js"
+    "fulltable": "node fulltable.js",
+    "build": "babel server -d dist"
+  },
+  "scripts": {
+    "build": "babel --presets es2015 server -d dist"
   },
   "repository": {
     "type": "git",
@@ -37,6 +41,8 @@
     "pg": "^7.11.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "dotenv": "^8.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.1",
