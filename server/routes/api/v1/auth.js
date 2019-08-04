@@ -11,20 +11,6 @@ require('dotenv/config');
 const cors = require('cors');
 router.use(cors());
 
-// @route GET api/auth
-// @ desc returns the user
-// @access Public
-
-router.get('/', auth, async (req, res) => {
-  try {
-    const user = await db.querydb(req.user.id);
-    res.json({ user });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ msg: 'Server error' });
-  }
-});
-
 // @route POST api/auth/login
 // @ desc Authenticate user and get token
 // @access Public
@@ -57,6 +43,7 @@ router.post(
           .status(400)
           .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
+      const userInfo = await db.querydb(email);
 
       const payload = {
         user: {
@@ -67,9 +54,10 @@ router.post(
         payload,
         process.env.jwtSecret,
         { expiresIn: 36000 },
-        (err, token) => {
+        async (err, token) => {
           if (err) throw err;
-          res.json({ token });
+
+          res.json({ userInfo, token });
         }
       );
     } catch (err) {
