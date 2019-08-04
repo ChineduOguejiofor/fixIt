@@ -7,7 +7,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "mocha *.test.js --recursive  ",
-    "coverage": "nyc --reporter=text npm test"
+    "server": "nodemon ./server/server",
+    "coverage": "nyc --reporter=text npm test",
+    "fulltable": "node fulltable.js"
   },
   "repository": {
     "type": "git",
@@ -24,15 +26,18 @@
     "bcryptjs": "^2.4.3",
     "chai": "^4.2.0",
     "config": "^3.2.0",
+    "cors": "^2.8.5",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "express": "^4.17.1",
     "express-validator": "^6.1.1",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^6.1.4",
-    "nyc": "^14.1.1"
+    "nyc": "^14.1.1",
+    "pg": "^7.11.0"
   },
   "devDependencies": {
+    "dotenv": "^8.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-import": "^2.18.0",
