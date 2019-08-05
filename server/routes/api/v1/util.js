@@ -6,4 +6,5 @@ function sayHello() {
   return 'Hello';
 }
 
+function isAdmin() {}
 module.exports = { errorMsg, sayHello };

@@ -9,11 +9,30 @@ const db = require('./dbinsert');
 //@ protection PRIVATE
 router.get('/', auth, async (req, res) => {
   try {
-    const myUser = req.user;
-    return res.json({ myUser });
+    const { isAdmin } = await db.isAdmin(req.user.id);
+    if (isAdmin) {
+      const result = await db.getAllRequest();
+      res.json({ result });
+    } else {
+      res.status(401).json({ msg: 'You are not Authorized to view this' });
+    }
+  } catch (error) {
+    req.status(500).json({ msg: 'Server Error' });
+  }
+});
 
-    const result = await db.getRequest(req.user.id);
-    res.json({ result });
+//@PUT /request/:request_id/approve
+//desc Approves a request. Must be Admin
+//@ protection PRIVATE
+router.put('/:request_id/approve', auth, async (req, res) => {
+  try {
+    const { isAdmin } = await db.isAdmin(req.user.id);
+    if (isAdmin) {
+      const result = await db.getAllRequest();
+      res.json({ result });
+    } else {
+      res.status(401).json({ msg: 'You are not Authorized to view this' });
+    }
   } catch (error) {
     req.status(500).json({ msg: 'Server Error' });
   }

@@ -106,6 +106,28 @@ const modifyRequest = async (body, image, reqId) => {
     console.log('Failed on error ' + error);
   }
 };
+const isAdmin = async searchId => {
+  try {
+    const sql = `SELECT is_admin AS "isAdmin" FROM users WHERE id = $1`;
+    const params = [searchId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on err' + error);
+
+    return error;
+  }
+};
+
+const getAllRequest = async () => {
+  try {
+    const sql = `SELECT * FROM requests`;
+    const result = await client.query(sql);
+    return result.rows;
+  } catch (error) {
+    return error;
+  }
+};
 module.exports = {
   insertUser,
   connectDB,
@@ -114,5 +136,7 @@ module.exports = {
   insertRequest,
   getRequest,
   getSingleRequest,
-  modifyRequest
+  modifyRequest,
+  getAllRequest,
+  isAdmin
 };
