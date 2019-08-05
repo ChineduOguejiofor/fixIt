@@ -128,6 +128,53 @@ const getAllRequest = async () => {
     return error;
   }
 };
+
+const getRequestById = async reqId => {
+  try {
+    const sql = `SELECT * FROM requests WHERE id = $1`;
+    const params = [reqId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error');
+    return error;
+  }
+};
+approveReq;
+
+const approveReq = async reqId => {
+  try {
+    const sql = `UPDATE requests SET is_approved = TRUE WHERE id = $1 RETURNING *`;
+    const params = [reqId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+
+const disapproveReq = async reqId => {
+  try {
+    const sql = `UPDATE requests SET is_approved = FALSE WHERE id = $1 RETURNING *`;
+    const params = [reqId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+
+const resolveReq = async reqId => {
+  try {
+    const sql = `UPDATE requests SET is_resolved = TRUE WHERE id = $1 RETURNING *`;
+    const params = [reqId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+
 module.exports = {
   insertUser,
   connectDB,
@@ -138,5 +185,9 @@ module.exports = {
   getSingleRequest,
   modifyRequest,
   getAllRequest,
-  isAdmin
+  isAdmin,
+  getRequestById,
+  approveReq,
+  disapproveReq,
+  resolveReq
 };
