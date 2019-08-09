@@ -1,3 +1,127 @@
+@import 'config';
+*,
+* ::before,
+::after {
+  box-sizing: border-box;
+}
 body {
-  background: black;
+  padding: 0;
+  margin: 0;
+  // position: relative;
+  background: $primary-color;
+  color: white;
+  font-family: 'Suez One', serif;
+  font-size: 1.2rem;
+  min-height: 100vh;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style: none;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  border-bottom: solid 1px #ecfc02;
+
+  ul {
+    display: flex;
+  }
+
+  a {
+    color: #fff;
+    padding: 0.45rem;
+    margin: 0 0.25rem;
+
+    &:hover {
+      color: #ecfc02;
+    }
+  }
+}
+
+.full-height-grow {
+  display: flex;
+  flex-direction: column;
+}
+
+#mreq {
+  color: #ecfc02;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 2em;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  color: white;
+  background-color: #4c6ef5;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.home-section {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 0 40px;
+
+  .img-wrapper {
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+  }
+
+  .maintenance-man {
+    background-image: url(../img/Local-Maintenance-Man.png);
+    flex-grow: 1;
+    max-height: 70vh;
+    min-width: 30vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+  }
+  .call-to-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem;
+    align-self: center;
+  }
+}
+#sub {
+  align-self: center;
+}
+#buttons {
+  align-self: center;
+  a {
+    margin: 0 0.5rem;
+  }
+}
+
+.fa-tools {
+  color: #4c6ef5;
 }
