@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 .m-1 {
   margin: 1rem;
 }
@@ -88,6 +90,7 @@
 body {
   padding: 0;
   margin: 0;
+  overflow: hidden;
   background: #132d71;
   color: white;
   font-family: 'Suez One', serif;
@@ -120,6 +123,7 @@ ul {
   width: 100%;
   top: 0;
   border-bottom: solid 1px #ecfc02;
+  background: #132d71;
 }
 
 .navbar ul {
@@ -257,3 +261,42 @@ ul {
 .fa-tools {
   color: #4c6ef5;
 }
+
+.loginBody {
+  background: #f6f5f7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* font-family: 'Suez One', serif; */
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  margin: -20px 0 50px;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+/*# sourceMappingURL=style.css.map */
