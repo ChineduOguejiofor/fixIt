@@ -91,7 +91,6 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  background: #132d71;
   color: white;
   font-family: 'Suez One', serif;
   font-size: 1.2rem;
@@ -193,6 +192,7 @@ ul {
       -ms-flex-positive: 1;
           flex-grow: 1;
   padding: 0 40px;
+  background: #132d71;
 }
 
 .home-section .img-wrapper {
@@ -309,6 +309,7 @@ button {
   background-color: #4c6ef5;
   color: #ffffff;
   font-size: 12px;
+  cursor: pointer;
   font-weight: bold;
   padding: 12px 45px;
   letter-spacing: 1px;
@@ -526,5 +527,35 @@ input {
 .container.right-panel-active .overlay-right {
   -webkit-transform: translateX(20%);
           transform: translateX(20%);
+}
+
+.request {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#leftside {
+  background: #495057;
+  height: 500px;
+}
+
+#leftside a {
+  display: block;
+  margin: 10px;
+  padding: 10px;
+}
+
+.ritems {
+  background: #e7e4e4;
+  color: black;
+  padding: 1rem;
+  margin: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 /*# sourceMappingURL=style.css.map */

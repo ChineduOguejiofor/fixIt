@@ -7,11 +7,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "mocha",
-    "server": "nodemon ./server/server",
+    "server": "nodemon server",
     "coverage": "nyc --reporter=text npm test",
     "fulltable": "node fulltable.js",
     "build": "babel --presets es2015 server -d dist",
-    "start:dev": "nodemon --exec babel-node ./server/server"
+    "dev": "nodemon --exec babel-node ./server/server"
   },
   "repository": {
     "type": "git",
