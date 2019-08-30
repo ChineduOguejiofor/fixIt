@@ -3,10 +3,10 @@ const signInGhost = document.querySelector('.ghost');
 const signIn = document.querySelector('#signIn');
 const signUp = document.querySelector('#signUp');
 const container = document.getElementById('container');
-// const url = 'http://localhost:3000/api/auth/signup';
-// const url2 = 'http://localhost:3000/api/auth/login';
-const url = 'http://192.168.43.96:3000/api/auth/signup';
-const url2 = 'http://192.168.43.96:3000/api/auth/login';
+const signupURL = 'http://localhost:3000/api/auth/signup';
+const loginURL = 'http://localhost:3000/api/auth/login';
+// const signupURL = 'http://192.168.43.96:3000/api/auth/signup';
+// const signupURL2 = 'http://192.168.43.96:3000/api/auth/login';
 
 signUpGhost.addEventListener('click', () => {
   container.classList.add('right-panel-active');
@@ -28,7 +28,7 @@ const register = async e => {
   const password = formData.get('password');
 
   const credentials = { name, email, password };
-  const request = await fetch(url, {
+  const request = await fetch(signupURL, {
     method: 'POST',
     body: JSON.stringify(credentials),
     headers: {
@@ -37,7 +37,7 @@ const register = async e => {
   });
 
   const data = await request.json();
-  console.log(data);
+  console.log(request);
 };
 
 const loginUser = async e => {
@@ -49,7 +49,7 @@ const loginUser = async e => {
 
   const details = { email, password };
 
-  const request = await fetch(url2, {
+  const request = await fetch(loginURL, {
     method: 'POST',
     body: JSON.stringify(details),
     headers: {
@@ -58,5 +58,13 @@ const loginUser = async e => {
   });
 
   const data = await request.json();
+  const statusCode = await request.status;
+  if (statusCode === 200) {
+    localStorage.setItem('token', data.token);
+    location.href = 'user.html';
+    //storetoken
+  } else {
+  }
   console.log(data);
+  console.log(statusCode);
 };

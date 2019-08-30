@@ -55,17 +55,17 @@ const qpass = async qbody => {
   } catch (error) {}
 };
 
-const insertRequest = async (body, image, userId) => {
+const insertRequest = async (title, type, body, image, userId) => {
   const table = 'requests';
   try {
-    const sql = `INSERT INTO ${table}(body,image,user_id) VALUES ($1, $2,$3) RETURNING *`;
-    const params = [body, image, userId];
+    const sql = `INSERT INTO ${table}(title,requestType,body,image,user_id) VALUES ($1, $2,$3,$4,$5) RETURNING *`;
+    const params = [title, type, body, image, userId];
     const result = await client.query(sql, params);
     console.log(result.rows[0]);
 
     return result.rows[0];
   } catch (error) {
-    console.log('Failed on error ' + error);
+    console.log('An Insertion Error has occured ' + error);
   }
 };
 

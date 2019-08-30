@@ -12,9 +12,13 @@ router.post(
   [
     auth,
     [
-      check('desc', 'please add a description')
+      check('desc', 'Please add a description')
         .not()
-        .isEmpty()
+        .isEmpty(),
+      check('title', 'Please add a title')
+        .not()
+        .isEmpty(),
+      check('type', 'Please add a request type')
     ]
   ],
   async (req, res) => {
@@ -23,9 +27,14 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     try {
+      const { title, type, desc, image } = req.body;
+      // console.log(type);
+
       const result = await db.insertRequest(
-        req.body.desc,
-        req.body.image,
+        title,
+        type,
+        desc,
+        image,
         req.user.id
       );
       res.json({ result });

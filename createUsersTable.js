@@ -23,6 +23,8 @@ const createUsersTable = ` CREATE TABLE IF NOT EXISTS
 const createRequestTable = `CREATE TABLE IF NOT EXISTS
       requests(
         id BIGSERIAL PRIMARY KEY,
+        title VARCHAR(128) NOT NULL,
+        requestType BOOLEAN NOT NULL DEFAULT FALSE,
         body VARCHAR(128) NOT NULL,
         image VARCHAR(128),
         user_id BIGINT REFERENCES users(id),
