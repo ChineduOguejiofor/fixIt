@@ -61,7 +61,7 @@ const loginUser = async e => {
   const statusCode = await request.status;
   if (statusCode === 200) {
     localStorage.setItem('token', data.token);
-    location.href = 'user.html';
+    location.href = 'dashboard.html';
     //storetoken
   } else {
   }

@@ -61,7 +61,6 @@ const insertRequest = async (title, type, body, image, userId) => {
     const sql = `INSERT INTO ${table}(title,requestType,body,image,user_id) VALUES ($1, $2,$3,$4,$5) RETURNING *`;
     const params = [title, type, body, image, userId];
     const result = await client.query(sql, params);
-    console.log(result.rows[0]);
 
     return result.rows[0];
   } catch (error) {
@@ -99,7 +98,6 @@ const modifyRequest = async (body, image, reqId) => {
     const sql = `UPDATE requests SET body = $1 ,image = $2 ,modified_date = NOW() WHERE id = $3 RETURNING *`;
     const params = [body, image, reqId];
     const result = await client.query(sql, params);
-    console.log(result.rows[0]);
 
     return result.rows[0];
   } catch (error) {

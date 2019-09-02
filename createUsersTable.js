@@ -34,7 +34,7 @@ const createRequestTable = `CREATE TABLE IF NOT EXISTS
         modified_date TIMESTAMP
       )`;
 
-async function execute() {
+const execute = async () => {
   try {
     await client.connect();
     console.log('Connected successfully');
@@ -55,6 +55,6 @@ async function execute() {
     await client.end();
     console.log('Cleaned');
   }
-}
+};
 
 execute();
