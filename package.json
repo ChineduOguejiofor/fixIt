@@ -11,8 +11,7 @@
     "coverage": "nyc --reporter=text npm test",
     "fulltable": "node fulltable.js",
     "dev": "nodemon --exec babel-node ./server/server",
-   
-    "heroku-postbuild": "npm install --production",
+    "heroku-postbuild": "babel server -d build",
     "build": "babel server -d build",
     "start": "node build/server"
   },
