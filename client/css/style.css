@@ -572,6 +572,10 @@ input {
   font-family: 'Times New Roman', Times, serif;
 }
 
+.item-group:hover {
+  background: #cfc9c9;
+}
+
 .item-group .item {
   -webkit-box-flex: 1;
       -ms-flex: 1;

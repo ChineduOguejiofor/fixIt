@@ -47,5 +47,9 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-react": "^7.14.2",
     "nodemon": "^1.19.1"
+  },
+  "engines":{
+    "node":"10.15.3",
+    "npm":"6.4.1"
   }
 }

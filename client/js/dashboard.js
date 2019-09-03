@@ -24,10 +24,14 @@ const getData = async () => {
         const newDiv = document.createElement('div');
         const rightside = document.getElementById('rightside');
         newDiv.className = 'item-group';
+        newDiv.addEventListener('click', function() {
+          youclicked(request.id, 'second');
+        });
         newDiv.innerHTML = ` 
+        
      <h4 class="item">${request.title}</h4>
      <h4 class="item">${request.requesttype ? 'Repair' : 'Maintenance'}</h4>
-     <h4 class="item">${request.is_resolved}</h4>
+     <h4 class="item">${request.is_resolved ? 'Approved' : 'Pending'}</h4>
     
      `;
         rightside.append(newDiv);
@@ -39,3 +43,12 @@ const getData = async () => {
 };
 
 getData();
+
+function callme() {
+  alert(' I ama called');
+}
+
+function youclicked(event, second) {
+  alert(event);
+  alert(second);
+}

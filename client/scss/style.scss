@@ -392,9 +392,13 @@ input {
   display: flex;
   padding: 0 0.7rem;
   color: black;
+
   h4 {
     // margin: 5px 0;
     font-family: 'Times New Roman', Times, serif;
+  }
+  &:hover {
+    background: darken(#e7e4e4, 10%);
   }
   .item {
     flex: 1;

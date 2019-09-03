@@ -37,10 +37,12 @@
     <section class="request">
       <div id="leftside">
         <a href="#">Create Request</a>
-        <a href="#">All Request <span>(23)</span></a>
-        <a href="#">Pening Request <span>(13)</span></a>
-        <a href="#">Approved Request <span>(3)</span></a>
-        <a href="#">Dis-approved Request <span>(5)</span></a>
+        <a onClick="callme(event)" href="#"
+          >All Request <span id="allrequest">(23)</span></a
+        >
+        <a href="#">Pending Request <span id="pendingrequest">(13)</span></a>
+        <a href="#">Approved Request <span id="approvedrequest">(3)</span></a>
+        <a href="#">Dis-approved Request <span id="disapproved">(5)</span></a>
       </div>
       <div id="rightside"></div>
     </section>
