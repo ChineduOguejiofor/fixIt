@@ -36,7 +36,7 @@ const createRequestTable = `CREATE TABLE IF NOT EXISTS
 
 const execute = async () => {
   try {
-    await client.connect();
+    // await client.connect();
     console.log('Connected successfully');
     await client.query('BEGIN');
     await client.query(dropRequestTable);

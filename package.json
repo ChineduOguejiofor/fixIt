@@ -12,6 +12,7 @@
     "fulltable": "node fulltable.js",
     "build": "babel --presets es2015 server -d dist",
     "dev": "nodemon --exec babel-node ./server/server",
+    "start": "babel-node ./server/server",
     "heroku-postbuild": "npm install --production"
   },
   "repository": {
@@ -49,8 +50,8 @@
     "eslint-plugin-react": "^7.14.2",
     "nodemon": "^1.19.1"
   },
-  "engines":{
-    "node":"10.15.3",
-    "npm":"6.4.1"
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
   }
 }
