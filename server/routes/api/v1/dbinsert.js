@@ -54,4 +54,140 @@ const qpass = async qbody => {
     return result.rows[0];
   } catch (error) {}
 };
-module.exports = { insertUser, connectDB, querydb, qpass };
+
+const insertRequest = async (body, image, userId) => {
+  const table = 'requests';
+  try {
+    const sql = `INSERT INTO ${table}(body,image,user_id) VALUES ($1, $2,$3) RETURNING *`;
+    const params = [body, image, userId];
+    const result = await client.query(sql, params);
+    console.log(result.rows[0]);
+
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+
+const getRequest = async quserId => {
+  try {
+    const sql = `SELECT * FROM requests WHERE user_id = $1`;
+    const params = [quserId];
+    const result = await client.query(sql, params);
+
+    return result.rows;
+  } catch (error) {
+    console.log('Failed on error');
+    return error;
+  }
+};
+
+const getSingleRequest = async (quserId, reqid) => {
+  try {
+    const sql = `SELECT * FROM requests WHERE user_id = $1 AND id = $2`;
+    const params = [quserId, reqid];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error');
+    return error;
+  }
+};
+
+const modifyRequest = async (body, image, reqId) => {
+  try {
+    const sql = `UPDATE requests SET body = $1 ,image = $2 ,modified_date = NOW() WHERE id = $3 RETURNING *`;
+    const params = [body, image, reqId];
+    const result = await client.query(sql, params);
+    console.log(result.rows[0]);
+
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+const isAdmin = async searchId => {
+  try {
+    const sql = `SELECT is_admin AS "isAdmin" FROM users WHERE id = $1`;
+    const params = [searchId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on err' + error);
+
+    return error;
+  }
+};
+
+const getAllRequest = async () => {
+  try {
+    const sql = `SELECT * FROM requests`;
+    const result = await client.query(sql);
+    return result.rows;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getRequestById = async reqId => {
+  try {
+    const sql = `SELECT * FROM requests WHERE id = $1`;
+    const params = [reqId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error');
+    return error;
+  }
+};
+approveReq;
+
+const approveReq = async reqId => {
+  try {
+    const sql = `UPDATE requests SET is_approved = TRUE WHERE id = $1 RETURNING *`;
+    const params = [reqId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+
+const disapproveReq = async reqId => {
+  try {
+    const sql = `UPDATE requests SET is_approved = FALSE WHERE id = $1 RETURNING *`;
+    const params = [reqId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+
+const resolveReq = async reqId => {
+  try {
+    const sql = `UPDATE requests SET is_resolved = TRUE WHERE id = $1 RETURNING *`;
+    const params = [reqId];
+    const result = await client.query(sql, params);
+    return result.rows[0];
+  } catch (error) {
+    console.log('Failed on error ' + error);
+  }
+};
+
+module.exports = {
+  insertUser,
+  connectDB,
+  querydb,
+  qpass,
+  insertRequest,
+  getRequest,
+  getSingleRequest,
+  modifyRequest,
+  getAllRequest,
+  isAdmin,
+  getRequestById,
+  approveReq,
+  disapproveReq,
+  resolveReq
+};

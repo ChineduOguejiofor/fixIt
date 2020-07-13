@@ -1,3 +1,10 @@
 function errorMsg(errText) {
-  return { msg: errText };
+  return { errText };
 }
+
+function sayHello() {
+  return 'Hello';
+}
+
+function isAdmin() {}
+module.exports = { errorMsg, sayHello };
